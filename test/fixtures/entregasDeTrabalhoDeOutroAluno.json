@@ -1,0 +1,17 @@
+[
+  {
+    "testTitle": "deve retornar 403 quando um aluno tentar registrar um trabalho em nome da Ana Souza",
+    "dadosAluno": {
+      "nome": "Karina Lopes",
+      "email": "karina.lopes@example.com",
+      "matricula": "K2026",
+      "senha": "senha123"
+    },
+    "alunoIdDeOutroAluno": "aluno-ana-souza",
+    "dadosTrabalho": {
+      "disciplinaId": "disciplina-matematica",
+      "titulo": "Trabalho em nome de outro aluno"
+    },
+    "statusCodeEsperado": 403
+  }
+]

@@ -111,6 +111,49 @@ Na primeira execução com o banco vazio, a API popula automaticamente as coleç
 dados fake descrito em [Dados fake pré-carregados](#dados-fake-pré-carregados). Em execuções
 seguintes, os dados já existentes são preservados.
 
+## Testes automatizados
+
+Os testes usam **Mocha**, **Chai** e **SuperTest** e ficam na pasta `test/`:
+
+- `test/external/entregaDeTrabalho.test.js` — fluxo de login do admin, cadastro e matrícula do
+  aluno, login do aluno e entrega de trabalho, feito via HTTP contra a API em execução (201).
+- `test/external/entregaDeTrabalhoInvalida.test.js` — entrega sem título ou sem disciplina (400),
+  para disciplina inexistente (404) e para disciplina sem matrícula (409).
+- `test/external/entregaDeTrabalhoSemAutenticacao.test.js` — entrega sem token, com token
+  inválido ou expirado (401).
+- `test/external/entregaDeTrabalhoDeOutroAluno.test.js` — aluno tentando registrar trabalho em nome
+  de outro aluno (403).
+- `test/helpers/api.js` — cria o cliente SuperTest apontando para `BASE_URL`.
+- `test/helpers/auth.js` — helpers de login do administrador (`obterTokenAdmin`) e do aluno
+  (`obterTokenAluno`).
+- `test/helpers/alunos.js` — remove, antes da suíte, os alunos da fixture que já existam no banco,
+  garantindo o estado inicial conhecido para o teste data-driven.
+- `test/fixtures/` — dados dos testes data-driven, um arquivo JSON por fluxo de teste (cada item
+  do arquivo vira um teste).
+
+As configurações são lidas de um arquivo `.env` (via **dotenv**), que não é versionado. Antes de
+rodar os testes, copie o modelo e ajuste os valores se necessário:
+
+```bash
+cp .env.example .env
+```
+
+Com a API rodando (`npm start`), execute:
+
+```bash
+npm test
+```
+
+Na pipeline do GitHub Actions (`.github/workflows/tests.yml`), a API sobe em segundo plano com um
+MongoDB de serviço e os testes rodam em seguida. As credenciais do administrador não ficam no
+workflow: elas são lidas dos secrets do repositório. Antes da primeira execução, cadastre-os em
+**Settings → Secrets and variables → Actions → New repository secret**:
+
+| Secret        | Valor              |
+|---------------|--------------------|
+| `ADMIN_EMAIL` | `admin@escola.com` |
+| `ADMIN_SENHA` | `admin123`         |
+
 ## Documentação da API (Swagger)
 
 A documentação completa de todas as rotas, parâmetros, corpos de requisição e respostas está

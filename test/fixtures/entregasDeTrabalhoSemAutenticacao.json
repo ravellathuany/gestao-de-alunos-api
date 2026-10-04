@@ -1,0 +1,32 @@
+[
+  {
+    "testTitle": "deve retornar 401 quando o trabalho for registrado sem token de autenticação",
+    "alunoId": "aluno-ana-souza",
+    "authorization": "",
+    "dadosTrabalho": {
+      "disciplinaId": "disciplina-matematica",
+      "titulo": "Lista de Exercícios - Sem token"
+    },
+    "statusCodeEsperado": 401
+  },
+  {
+    "testTitle": "deve retornar 401 quando o token de autenticação for inválido",
+    "alunoId": "aluno-ana-souza",
+    "authorization": "Bearer token-invalido",
+    "dadosTrabalho": {
+      "disciplinaId": "disciplina-matematica",
+      "titulo": "Lista de Exercícios - Token inválido"
+    },
+    "statusCodeEsperado": 401
+  },
+  {
+    "testTitle": "deve retornar 401 quando o token de autenticação estiver expirado",
+    "alunoId": "aluno-ana-souza",
+    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbHVuby1hbmEtc291emEiLCJyb2xlIjoiYWx1bm8iLCJub21lIjoiQW5hIFNvdXphIiwiaWF0IjoxNzkxMDU1NjMyLCJleHAiOjE3OTEwNTkyMzJ9.xYqTgldJDWnmVzq6b39UJEmyTG0TVbrUMZwGZYHr-N0",
+    "dadosTrabalho": {
+      "disciplinaId": "disciplina-matematica",
+      "titulo": "Lista de Exercícios - Token expirado"
+    },
+    "statusCodeEsperado": 401
+  }
+]

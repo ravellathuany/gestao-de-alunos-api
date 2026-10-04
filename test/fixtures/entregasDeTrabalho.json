@@ -1,0 +1,46 @@
+[
+  {
+    "testTitle": "deve registrar a entrega de um trabalho de Matemática por um aluno recém-cadastrado",
+    "dadosAluno": {
+      "nome": "Diego Ferreira",
+      "email": "diego.ferreira@example.com",
+      "matricula": "D2026",
+      "senha": "senha123"
+    },
+    "disciplinaId": "disciplina-matematica",
+    "dadosTrabalho": {
+      "titulo": "Lista de Exercícios - Funções",
+      "descricao": "Resolução dos exercícios do capítulo 3."
+    },
+    "statusCodeEsperado": 201
+  },
+  {
+    "testTitle": "deve registrar a entrega de um trabalho de História por um aluno recém-cadastrado",
+    "dadosAluno": {
+      "nome": "Elisa Rocha",
+      "email": "elisa.rocha@example.com",
+      "matricula": "E2026",
+      "senha": "senha456"
+    },
+    "disciplinaId": "disciplina-historia",
+    "dadosTrabalho": {
+      "titulo": "Resenha - Revolução Francesa",
+      "descricao": "Resenha crítica sobre as causas da Revolução Francesa."
+    },
+    "statusCodeEsperado": 201
+  },
+  {
+    "testTitle": "deve registrar a entrega de um trabalho de Programação Web sem descrição por um aluno recém-cadastrado",
+    "dadosAluno": {
+      "nome": "Felipe Costa",
+      "email": "felipe.costa@example.com",
+      "matricula": "F2026",
+      "senha": "senha789"
+    },
+    "disciplinaId": "disciplina-programacao-web",
+    "dadosTrabalho": {
+      "titulo": "Formulário de Contato"
+    },
+    "statusCodeEsperado": 201
+  }
+]

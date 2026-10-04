@@ -1,0 +1,58 @@
+[
+  {
+    "testTitle": "deve retornar 400 quando o aluno registrar um trabalho sem título",
+    "dadosAluno": {
+      "nome": "Gabriela Nunes",
+      "email": "gabriela.nunes@example.com",
+      "matricula": "G2026",
+      "senha": "senha123"
+    },
+    "disciplinaId": "disciplina-matematica",
+    "dadosTrabalho": {
+      "descricao": "Trabalho enviado sem o campo título."
+    },
+    "statusCodeEsperado": 400
+  },
+  {
+    "testTitle": "deve retornar 400 quando o aluno registrar um trabalho sem informar a disciplina",
+    "dadosAluno": {
+      "nome": "Henrique Alves",
+      "email": "henrique.alves@example.com",
+      "matricula": "H2026",
+      "senha": "senha456"
+    },
+    "disciplinaId": "",
+    "dadosTrabalho": {
+      "titulo": "Trabalho sem disciplina"
+    },
+    "statusCodeEsperado": 400
+  },
+  {
+    "testTitle": "deve retornar 404 quando o aluno registrar um trabalho para uma disciplina inexistente",
+    "dadosAluno": {
+      "nome": "Isabela Martins",
+      "email": "isabela.martins@example.com",
+      "matricula": "I2026",
+      "senha": "senha789"
+    },
+    "disciplinaId": "disciplina-inexistente",
+    "dadosTrabalho": {
+      "titulo": "Trabalho de disciplina inexistente"
+    },
+    "statusCodeEsperado": 404
+  },
+  {
+    "testTitle": "deve retornar 409 quando o aluno registrar um trabalho para uma disciplina em que não está matriculado",
+    "dadosAluno": {
+      "nome": "João Pereira",
+      "email": "joao.pereira@example.com",
+      "matricula": "J2026",
+      "senha": "senha321"
+    },
+    "disciplinaId": "disciplina-historia",
+    "dadosTrabalho": {
+      "titulo": "Resumo - Brasil Colônia"
+    },
+    "statusCodeEsperado": 409
+  }
+]

@@ -10,6 +10,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      MONGODB_URI: mongodb://127.0.0.1:27017/gestao-de-alunos-test
+      BASE_URL: http://localhost:3000
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_SENHA: ${{ secrets.ADMIN_SENHA }}
+
     services:
       mongodb:
         image: mongo:7
@@ -34,7 +40,14 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      - name: Subir a API em segundo plano
+        run: |
+          npm start &
+          for i in $(seq 1 30); do
+            curl -sf "$BASE_URL" > /dev/null && exit 0
+            sleep 1
+          done
+          echo "A API não respondeu em $BASE_URL" && exit 1
+
       - name: Executar testes
         run: npm test
-        env:
-          MONGODB_URI: mongodb://127.0.0.1:27017/gestao-de-alunos-test
